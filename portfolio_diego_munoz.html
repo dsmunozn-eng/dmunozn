@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diego Muñoz — Bioengineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Jost:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --white: #ffffff;
+  --off: #f7f6f3;
+  --dark: #1c1c1c;
+  --mid: #555550;
+  --light: #aaa9a0;
+  --accent: #2d5a27;
+  --accent2: #8b4513;
+  --rule: #e0dfd8;
+  --nav-h: 64px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  background: var(--white);
+  color: var(--dark);
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--white); }
+::-webkit-scrollbar-thumb { background: var(--rule); }
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: var(--nav-h);
+  z-index: 200;
+  background: rgba(255,255,255,0.94);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--rule);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 4rem;
+}
+.nav-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: var(--dark);
+  text-decoration: none;
+  letter-spacing: 0.01em;
+}
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+}
+.nav-links a {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--mid);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--accent); }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 55% 45%;
+  padding-top: var(--nav-h);
+}
+.hero-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 8rem 5rem 6rem 6rem;
+  border-right: 1px solid var(--rule);
+}
+.hero-eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--light);
+  margin-bottom: 2rem;
+}
+.hero-name {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3.5rem, 6vw, 6.5rem);
+  font-weight: 400;
+  line-height: 1.0;
+  margin-bottom: 2rem;
+  color: var(--dark);
+}
+.hero-name em {
+  font-style: italic;
+  color: var(--accent);
+}
+.hero-desc {
+  font-size: 1rem;
+  color: var(--mid);
+  line-height: 1.85;
+  max-width: 440px;
+  margin-bottom: 3rem;
+  font-weight: 300;
+}
+.hero-ctas {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.btn {
+  display: inline-block;
+  padding: 0.65rem 1.8rem;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid var(--dark);
+  color: var(--dark);
+  transition: all 0.22s;
+  cursor: pointer;
+  background: transparent;
+}
+.btn:hover { background: var(--dark); color: var(--white); }
+.btn-accent { background: var(--accent); color: var(--white); border-color: var(--accent); }
+.btn-accent:hover { background: var(--dark); border-color: var(--dark); color: var(--white); }
+
+.hero-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 4rem 4rem 5rem 4rem;
+  background: var(--off);
+  position: relative;
+  overflow: hidden;
+}
+.hero-right-top {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.bio-circle {
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #dde8db 0%, #c8dbc6 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.bio-circle::before {
+  content: '';
+  position: absolute;
+  width: 290px; height: 290px;
+  border-radius: 50%;
+  border: 1px solid rgba(45,90,39,0.15);
+}
+.bio-circle::after {
+  content: '';
+  position: absolute;
+  width: 320px; height: 320px;
+  border-radius: 50%;
+  border: 1px dashed rgba(45,90,39,0.08);
+}
+.bio-initial {
+  font-family: 'Playfair Display', serif;
+  font-size: 5rem;
+  font-style: italic;
+  color: var(--accent);
+  opacity: 0.5;
+  user-select: none;
+}
+.hero-quote-block {
+  border-left: 2px solid var(--accent);
+  padding-left: 1.5rem;
+  margin-top: 3rem;
+}
+.hero-quote-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem;
+  font-style: italic;
+  color: var(--dark);
+  line-height: 1.65;
+}
+.hero-quote-attr {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--light);
+  margin-top: 0.6rem;
+}
+
+/* ── SECTION COMMONS ── */
+.section {
+  padding: 7rem 6rem;
+}
+.section-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.section-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--light);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+.section-label::after {
+  content: '';
+  display: block;
+  height: 1px;
+  width: 48px;
+  background: var(--rule);
+}
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 400;
+  line-height: 1.15;
+  margin-bottom: 3.5rem;
+  color: var(--dark);
+}
+.section-title em { font-style: italic; color: var(--accent); }
+
+/* ── ABOUT (2-col) ── */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: start;
+}
+.about-text p {
+  font-size: 0.96rem;
+  color: var(--mid);
+  line-height: 1.9;
+  margin-bottom: 1.2rem;
+}
+.about-text p strong { color: var(--dark); font-weight: 500; }
+.skill-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1.8rem;
+}
+.chip {
+  padding: 0.3rem 0.85rem;
+  border: 1px solid var(--rule);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  color: var(--mid);
+  transition: all 0.18s;
+}
+.chip:hover { border-color: var(--accent); color: var(--accent); }
+.about-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+.stat-block {
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--rule);
+}
+.stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.8rem;
+  font-weight: 400;
+  color: var(--dark);
+  line-height: 1;
+}
+.stat-desc {
+  font-size: 0.75rem;
+  color: var(--light);
+  letter-spacing: 0.04em;
+  margin-top: 0.4rem;
+  line-height: 1.5;
+}
+
+/* ── EXPERIENCE ── */
+.exp-list { display: flex; flex-direction: column; }
+.exp-row {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 3rem;
+  padding: 2.8rem 0;
+  border-top: 1px solid var(--rule);
+  transition: background 0.15s;
+}
+.exp-row:last-child { border-bottom: 1px solid var(--rule); }
+.exp-meta { padding-top: 0.15rem; }
+.exp-date {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.68rem;
+  color: var(--light);
+  letter-spacing: 0.06em;
+  line-height: 1.7;
+}
+.exp-tag-pill {
+  display: inline-block;
+  margin-top: 0.8rem;
+  padding: 0.2rem 0.65rem;
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  border: 1px solid rgba(45,90,39,0.25);
+}
+.exp-body {}
+.exp-role {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  font-weight: 400;
+  margin-bottom: 0.25rem;
+  color: var(--dark);
+}
+.exp-org {
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--accent2);
+  margin-bottom: 0.8rem;
+  text-transform: uppercase;
+  font-family: 'Jost', sans-serif;
+}
+.exp-desc {
+  font-size: 0.88rem;
+  color: var(--mid);
+  line-height: 1.85;
+}
+
+/* ── EDUCATION ── */
+.edu-section { background: var(--off); }
+.edu-grid {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 6rem;
+  align-items: start;
+}
+.edu-intro p {
+  font-size: 0.92rem;
+  color: var(--mid);
+  line-height: 1.85;
+}
+.edu-list { display: flex; flex-direction: column; gap: 0; }
+.edu-row {
+  padding: 2rem 0;
+  border-bottom: 1px solid var(--rule);
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 1.8rem;
+  align-items: start;
+}
+.edu-row:first-child { border-top: 1px solid var(--rule); }
+.edu-year-col {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--light);
+  letter-spacing: 0.08em;
+  line-height: 1.6;
+  padding-top: 0.25rem;
+}
+.edu-degree {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem;
+  font-weight: 400;
+  color: var(--dark);
+  margin-bottom: 0.2rem;
+}
+.edu-inst {
+  font-size: 0.76rem;
+  font-weight: 500;
+  color: var(--accent2);
+  letter-spacing: 0.04em;
+  margin-bottom: 0.4rem;
+  text-transform: uppercase;
+}
+.edu-curric {
+  font-size: 0.78rem;
+  color: var(--light);
+  font-style: italic;
+  line-height: 1.6;
+}
+
+/* ── LEADERSHIP ── */
+.lead-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+.lead-card {
+  padding: 2rem;
+  border: 1px solid var(--rule);
+  transition: border-color 0.2s, transform 0.2s;
+  cursor: default;
+}
+.lead-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-3px);
+}
+.lead-date {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  color: var(--light);
+  margin-bottom: 0.7rem;
+}
+.lead-role {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem;
+  font-weight: 400;
+  margin-bottom: 0.2rem;
+  color: var(--dark);
+}
+.lead-org {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent2);
+  margin-bottom: 0.8rem;
+}
+.lead-desc {
+  font-size: 0.83rem;
+  color: var(--mid);
+  line-height: 1.8;
+}
+
+/* ── AWARDS ── */
+.awards-section { background: var(--off); }
+.awards-list { display: flex; flex-direction: column; }
+.award-row {
+  display: flex;
+  align-items: baseline;
+  gap: 2rem;
+  padding: 1.2rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+.award-row:first-child { border-top: 1px solid var(--rule); }
+.award-yr {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.68rem;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  min-width: 36px;
+  flex-shrink: 0;
+}
+.award-name-text {
+  font-size: 0.9rem;
+  color: var(--dark);
+  line-height: 1.6;
+}
+
+/* ── CONTACT ── */
+.contact-section {
+  background: var(--white);
+  border-top: 1px solid var(--rule);
+}
+.contact-inner {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+.contact-inner .section-label { justify-content: center; }
+.contact-inner .section-label::after { display: none; }
+.contact-intro {
+  font-size: 0.95rem;
+  color: var(--mid);
+  line-height: 1.85;
+  margin-bottom: 2.5rem;
+}
+.contact-links {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* ── FOOTER ── */
+footer {
+  border-top: 1px solid var(--rule);
+  padding: 1.8rem 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.9rem;
+  font-style: italic;
+  color: var(--light);
+}
+.footer-copy {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  color: var(--light);
+}
+
+/* ── DIVIDER ── */
+.divider {
+  height: 1px;
+  background: var(--rule);
+  margin: 0 6rem;
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hero-eyebrow { animation: fadeUp 0.7s ease 0.1s both; }
+.hero-name    { animation: fadeUp 0.7s ease 0.25s both; }
+.hero-desc    { animation: fadeUp 0.7s ease 0.4s both; }
+.hero-ctas    { animation: fadeUp 0.7s ease 0.55s both; }
+.hero-right   { animation: fadeUp 0.7s ease 0.2s both; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 960px) {
+  nav { padding: 0 1.5rem; }
+  .nav-links { gap: 1.5rem; }
+  .hero { grid-template-columns: 1fr; }
+  .hero-left { padding: 6rem 2rem 3rem; }
+  .hero-right { min-height: 340px; padding: 3rem 2rem; }
+  .section { padding: 5rem 2rem; }
+  .divider { margin: 0 2rem; }
+  .about-grid, .edu-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .lead-grid { grid-template-columns: 1fr; }
+  .exp-row { grid-template-columns: 1fr; gap: 0.5rem; }
+  footer { padding: 1.5rem 2rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">Diego Muñoz</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#leadership">Leadership</a></li>
+    <li><a href="#awards">Awards</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-left">
+    <p class="hero-eyebrow">Bioengineer · Plant Bioinformatics · Lima, Perú</p>
+    <h1 class="hero-name">Diego<br>Stewart<br><em>Muñoz Neira</em></h1>
+    <p class="hero-desc">Bridging ancestral Andean knowledge with cutting-edge biotechnology. Founder of Biotechnology Across The Andes — building science communities where every voice in Latin America is heard.</p>
+    <div class="hero-ctas">
+      <a href="#experience" class="btn btn-accent">Explore my work</a>
+      <a href="mailto:diego.munoz@utec.edu.pe" class="btn">Get in touch</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-right-top">
+      <div class="bio-circle">
+        <span class="bio-initial">D</span>
+      </div>
+    </div>
+    <div class="hero-quote-block">
+      <p class="hero-quote-text">"Preserving ancestral knowledge through the language of molecules — making science a tool for communities, not just institutions."</p>
+      <p class="hero-quote-attr">A guiding principle</p>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="section-inner">
+    <p class="section-label">Who I am</p>
+    <h2 class="section-title">Scientist. Builder. <em>Connector.</em></h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I am a bioengineer from Lima, Peru, with a deep commitment to democratizing science across Latin America. My work sits at the intersection of <strong>plant biotechnology</strong>, <strong>bioinformatics</strong>, and community-driven innovation — always asking how science can serve the people and ecosystems of the Andes.</p>
+        <p>As founder of <strong>Biotechnology Across The Andes</strong>, I lead the Plant Bioinformatics Study Group: a learning community making computational biology tools accessible to students and early-stage professionals across the region.</p>
+        <p>From building pH biosensors from native Peruvian potatoes to representing Latin America in the iGEM global ecosystem, I bring both wet-lab expertise and a systems-level vision for regional biotechnology development.</p>
+        <div class="skill-chips">
+          <span class="chip">Plant Bioinformatics</span>
+          <span class="chip">CRISPR</span>
+          <span class="chip">Synthetic Biology</span>
+          <span class="chip">Molecular Biology</span>
+          <span class="chip">RNA-seq Analysis</span>
+          <span class="chip">Agrobacterium Transformation</span>
+          <span class="chip">Python</span>
+          <span class="chip">3D Printing</span>
+          <span class="chip">Biosensor Design</span>
+          <span class="chip">Electronics & Automation</span>
+          <span class="chip">Community Building</span>
+          <span class="chip">Bioprocesses</span>
+        </div>
+      </div>
+      <div class="about-stats">
+        <div class="stat-block">
+          <div class="stat-num">8+</div>
+          <div class="stat-desc">Years of research & bioengineering experience</div>
+        </div>
+        <div class="stat-block">
+          <div class="stat-num">10+</div>
+          <div class="stat-desc">International awards & recognitions</div>
+        </div>
+        <div class="stat-block">
+          <div class="stat-num">Gold</div>
+          <div class="stat-desc">iGEM Global Competition medal, 2021</div>
+        </div>
+        <div class="stat-block">
+          <div class="stat-num">100</div>
+          <div class="stat-desc">Young Leaders in Biotechnology in Latin America — Allbiotech 2020</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EXPERIENCE -->
+<section class="section" id="experience">
+  <div class="section-inner">
+    <p class="section-label">Professional journey</p>
+    <h2 class="section-title">Where I've <em>worked</em></h2>
+    <div class="exp-list">
+
+      <div class="exp-row">
+        <div class="exp-meta">
+          <div class="exp-date">July 2025<br>Present</div>
+          <div class="exp-tag-pill">Community Science</div>
+        </div>
+        <div class="exp-body">
+          <div class="exp-role">Founder & Leader of Educational Programs in Bioinformatics</div>
+          <div class="exp-org">Biotechnology Across The Andes · Lima, PE</div>
+          <p class="exp-desc">Leading the Plant Bioinformatics Study Group — a learning community that democratizes access to plant bioinformatics tools for students and early-stage professionals in Latin America. Promoting innovation led by Andean communities to preserve and strengthen ancestral knowledge.</p>
+        </div>
+      </div>
+
+      <div class="exp-row">
+        <div class="exp-meta">
+          <div class="exp-date">July 2024<br>Dec 2025</div>
+          <div class="exp-tag-pill">Ecosystem</div>
+        </div>
+        <div class="exp-body">
+          <div class="exp-role">Latin America Representative</div>
+          <div class="exp-org">iGEM Startups · Paris, FR</div>
+          <p class="exp-desc">Conducted interviews with scientists who founded biotechnology startups in Latin America, documenting lessons learned and challenges to generate actionable insights about the regional ecosystem. Connected key players, facilitating partnerships and promoting collaboration.</p>
+        </div>
+      </div>
+
+      <div class="exp-row">
+        <div class="exp-meta">
+          <div class="exp-date">March 2024<br>Aug 2024</div>
+          <div class="exp-tag-pill">Research</div>
+        </div>
+        <div class="exp-body">
+          <div class="exp-role">Research Assistant</div>
+          <div class="exp-org">Chemical Engineering Laboratory · UTEC University · Lima, PE</div>
+          <p class="exp-desc">Developed pH biosensors from bioactive compounds of native Peruvian potatoes. Led the planning and proposal of the Enzyme-Assisted Protein Extraction project for Sacha Inchi.</p>
+        </div>
+      </div>
+
+      <div class="exp-row">
+        <div class="exp-meta">
+          <div class="exp-date">April 2023<br>Sept 2023</div>
+          <div class="exp-tag-pill">Plant Biotech</div>
+        </div>
+        <div class="exp-body">
+          <div class="exp-role">Research Assistant — Professional Internship & Thesis</div>
+          <div class="exp-org">Bioengineering Laboratory, Bio Center · UTEC University · Lima, PE</div>
+          <p class="exp-desc">Developed hormone-mediated in vitro culture techniques for plant cells. Designed and built an incubator for Nicotiana species with photoperiod, temperature, and humidity control. Performed Agrobacterium-mediated genetic transformation protocols and plasmid construction.</p>
+        </div>
+      </div>
+
+      <div class="exp-row">
+        <div class="exp-meta">
+          <div class="exp-date">March 2021<br>July 2021</div>
+          <div class="exp-tag-pill">Biomaterials</div>
+        </div>
+        <div class="exp-body">
+          <div class="exp-role">Research Assistant — Internship</div>
+          <div class="exp-org">Bioengineering Laboratory, Bio Center · UTEC University · Lima, PE</div>
+          <p class="exp-desc">Designed and built an incubator for growing fungal mycelium biomaterial as an alternative to polystyrene. Researched genetic characteristics of saprophytic fungi for producing biomaterials. Developed a Python control system with electronic circuits and 3D-printed prototypes.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section class="section edu-section" id="education">
+  <div class="section-inner">
+    <div class="edu-grid">
+      <div class="edu-intro">
+        <p class="section-label">Academic training</p>
+        <h2 class="section-title">Knowledge<br>across <em>disciplines</em></h2>
+        <p>From industrial electronics to synthetic biology and bioinformatics, my interdisciplinary background gives me a unique perspective that bridges hardware, biology, and community design.</p>
+      </div>
+      <div class="edu-list">
+
+        <div class="edu-row">
+          <div class="edu-year-col">2026</div>
+          <div>
+            <div class="edu-degree">Bioinformatics Methods I</div>
+            <div class="edu-inst">Universidad de Toronto · Coursera</div>
+            <div class="edu-curric">Plant bioinformatics, sequence analysis & phylogenetics, RNA-seq analysis</div>
+          </div>
+        </div>
+
+        <div class="edu-row">
+          <div class="edu-year-col">2025</div>
+          <div>
+            <div class="edu-degree">Intermediate Course in Plant Synthetic Biology</div>
+            <div class="edu-inst">Synthetic Biology Initiative Africa</div>
+            <div class="edu-curric">CRISPR Plant Genome Editing, Plant Metabolic Engineering, Plant Microbiome, Plant Bioinformatics</div>
+          </div>
+        </div>
+
+        <div class="edu-row">
+          <div class="edu-year-col">2017–2023</div>
+          <div>
+            <div class="edu-degree">Bachelor's in Bioengineering — Biotechnology</div>
+            <div class="edu-inst">UTEC University of Engineering and Technology · Lima, PE</div>
+            <div class="edu-curric">Molecular Biology, Biochemistry, Tissue Engineering, Bioreactors & Bioprocesses</div>
+          </div>
+        </div>
+
+        <div class="edu-row">
+          <div class="edu-year-col">2019</div>
+          <div>
+            <div class="edu-degree">Technology Design for Coffee Production</div>
+            <div class="edu-inst">MIT Media Lab · Space Enabled Research Group · Bogotá, CO</div>
+            <div class="edu-curric">Participatory Design, Rural Immersion, Digital Fabrication, Business Models</div>
+          </div>
+        </div>
+
+        <div class="edu-row">
+          <div class="edu-year-col">2009–2012</div>
+          <div>
+            <div class="edu-degree">Bachelor's in Technology — Electronics & Industrial Automation</div>
+            <div class="edu-inst">TECSUP Institute · Lima, PE</div>
+            <div class="edu-curric">Instrumentation & Control, Power Electronics, Industrial Automation</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEADERSHIP -->
+<section class="section" id="leadership">
+  <div class="section-inner">
+    <p class="section-label">Community & impact</p>
+    <h2 class="section-title">Leadership &<br><em>service</em></h2>
+    <div class="lead-grid">
+
+      <div class="lead-card">
+        <div class="lead-date">February 2025</div>
+        <div class="lead-role">Next Generation Leader Fellow</div>
+        <div class="lead-org">The Spirit of Asilomar Conference</div>
+        <p class="lead-desc">Part of the Indigenous Biotechnology working group, contributing to stewardship and care principles. Co-authored the Accessible Biotech Education report within "Framing Biotechnology's Future."</p>
+      </div>
+
+      <div class="lead-card">
+        <div class="lead-date">November 2023</div>
+        <div class="lead-role">Mentor — Amazonian Entrepreneurs Program</div>
+        <div class="lead-org">Ark Ventures · Madre de Dios</div>
+        <p class="lead-desc">Advised university students on innovation methodologies for environmental and social problems. Provided technical guidance on biotechnology-focused proposals.</p>
+      </div>
+
+      <div class="lead-card">
+        <div class="lead-date">June — December 2022</div>
+        <div class="lead-role">iGEM Youth Biodiversity Leadership Program</div>
+        <div class="lead-org">iGEM Foundation · Montreal, Canada</div>
+        <p class="lead-desc">Member of the inaugural cohort. Selected as iGEM delegate to attend the UN Biodiversity Conference COP15 in Montreal, Canada.</p>
+      </div>
+
+      <div class="lead-card">
+        <div class="lead-date">March 2018 — February 2020</div>
+        <div class="lead-role">Founder & Director</div>
+        <div class="lead-org">UTEC Puppy Lab · Ayuda Animal · Lima, PE</div>
+        <p class="lead-desc">Founded and directed an organization with 30+ volunteers. Events drew ~500 attendees each. Recognized as a Best Practice by Great Place to Work Peru 2018.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- AWARDS -->
+<section class="section awards-section" id="awards">
+  <div class="section-inner">
+    <p class="section-label">Recognition</p>
+    <h2 class="section-title">Awards &<br><em>honors</em></h2>
+    <div class="awards-list">
+      <div class="award-row"><span class="award-yr">2025</span><span class="award-name-text">Selected Next Generation Leader — Science History Museum & Stanford University</span></div>
+      <div class="award-row"><span class="award-yr">2024</span><span class="award-name-text">Team Organizer, University Innovation Fellows Meetup at Stanford d.school</span></div>
+      <div class="award-row"><span class="award-yr">2023</span><span class="award-name-text">Selected Judge — iGEM Synthetic Biology Competition, Paris</span></div>
+      <div class="award-row"><span class="award-yr">2022</span><span class="award-name-text">iGEM Delegate — UN Biodiversity Conference COP15, Montreal</span></div>
+      <div class="award-row"><span class="award-yr">2022</span><span class="award-name-text">Member of the first cohort, iGEM Youth Biodiversity Leadership Program</span></div>
+      <div class="award-row"><span class="award-yr">2022</span><span class="award-name-text">Constant Communicator Award — iGEM Mentoring Program</span></div>
+      <div class="award-row"><span class="award-yr">2021</span><span class="award-name-text">Global Community Bio Fellow — MIT Media Lab</span></div>
+      <div class="award-row"><span class="award-yr">2021</span><span class="award-name-text">Gold Medal — iGEM Global Competition</span></div>
+      <div class="award-row"><span class="award-yr">2020</span><span class="award-name-text">100 Young Leaders in Biotechnology in Latin America — Allbiotech</span></div>
+      <div class="award-row"><span class="award-yr">2019</span><span class="award-name-text">MIT D-Lab Certified Facilitator — Creative Abilities Development Methodology</span></div>
+      <div class="award-row"><span class="award-yr">2018</span><span class="award-name-text">University Innovation Fellow — Stanford d.school</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section contact-section" id="contact">
+  <div class="contact-inner">
+    <p class="section-label">Let's connect</p>
+    <h2 class="section-title">Ready to <em>collaborate?</em></h2>
+    <p class="contact-intro">Whether you're building something in biotech, looking for a collaborator in Latin America, or want to connect on plant bioinformatics and community science — I'd love to hear from you.</p>
+    <div class="contact-links">
+      <a href="mailto:diego.munoz@utec.edu.pe" class="btn btn-accent">Send an email</a>
+      <a href="https://www.linkedin.com/in/dsmunozn" target="_blank" class="btn">LinkedIn</a>
+      <a href="tel:+51955772396" class="btn">+51 955 772 396</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-name">Diego Stewart Muñoz Neira</span>
+  <span class="footer-copy">© 2026 · Lima, Perú</span>
+</footer>
+
+</body>
+</html>
